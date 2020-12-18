@@ -1,10 +1,7 @@
 import React from 'react';
 
-function App() {
-  return (
-    <div className='wrapper'>
-    </div>
-  );
+class App extends React.Component {
+  
 }
 
 export default App;
