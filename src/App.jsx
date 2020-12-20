@@ -1,46 +1,65 @@
 import React from 'react';
+import { Profile } from './components/Profile'
+import { Map } from './components/Map'
+import  Login  from './components/Login'
+
+const PAGES = {
+  map: <Map />,
+  profile: <Profile />,
+  login: (props) => <Login {...props}/>,
+  exit: <Login />
+}
+
 
 class App extends React.Component {
   state = {
-    firstName: "",
-    password: ""
-  }
+    currentPage: "profile"
+  };
 
-  handleSubmit = event => {
-    event.preventDefault()
-    
-  }
-
-  handleFirstNameChange = event => {
-    this.setState({firstName: event.target.value})
-  }
-
-  handlePasswordChange = event => {
-    this.setState({password: event.target.value})
+  navigateTo = (page) => {
+    this.setState({currentPage: page})
   }
 
   render() {
-    const {firstName, password} = this.state;
-    return (
+    return(
       <>
-      <h1>Войти</h1>
-
-      <div>
-        <div>Новый пользователь?</div>
-        <button type="button">Зарегистрируйтесь</button>
-      </div>
-
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor='email'>Имя пользователя</label>
-        <input id='email' value={firstName} onChange={this.handleFirstNameChange} type='email' name='email' size='28'/>
-
-        <label htmlFor='password'>Пароль*</label>
-        <input id='password'  value={password} onChange={this.handlePasswordChange} type='password' name='password' size='28'/>
-
-        <input type="button" value="Войти"/>
-      </form>
+        <header>
+          <nav>
+            <ul>
+              <li>
+                <button onClick={() => this.navigateTo("map")}>
+                  Карта
+                </button>
+              </li>
+              <li>
+                <button onClick={() => this.navigateTo("profile")}>
+                  Профиль
+                </button>
+              </li>
+              <li>
+                <button onClick={() => this.navigateTo("exit")}>
+                  Выйти
+                </button>
+              </li>
+              <li>
+                <button onClick={() => this.navigateTo("login")}>
+                  Логин
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </header>
+        <main data-testid="container">
+          <section>
+            {
+              this.state.currentPage === 'login'?
+              PAGES[this.state.currentPage]({navigate: this.navigateTo.bind(this)}):
+              PAGES[this.state.currentPage] 
+            }
+          </section>
+        </main>
       </>
-    );
+    )
   }
 }
 

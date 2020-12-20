@@ -2,26 +2,17 @@ import React from 'react';
 
 class Login extends React.Component {
   state = {
-    email: "",
     firstName: "",
-    lastName: "",
     password: ""
   }
 
   handleSubmit = event => {
-    event.preventDefault()
-    
+    event.preventDefault();
+    this.props.navigate('map');
   }
 
-  handleEmailChange = event => {
-    this.setState({email: event.target.value})
-  }
   handleFirstNameChange = event => {
     this.setState({firstName: event.target.value})
-  }
-
-  handleLastNameChange = event => {
-    this.setState({LastName: event.target.value})
   }
 
   handlePasswordChange = event => {
@@ -29,28 +20,24 @@ class Login extends React.Component {
   }
 
   render() {
-    const {email, firstName, lastName, password} = this.state
+    const {firstName, password} = this.state;
     return (
       <>
-      <h1>Регистрация</h1>
+      <h1>Войти</h1>
+
       <div>
-        <div>Уже зарегистрирован?</div>
-        <button type="button" >Войти</button>
+        <div>Новый пользователь?</div>
+        <button type="button">Зарегистрируйтесь</button>
       </div>
-      <form>
-        <label htmlFor='email'>Адрес электронной почты</label>
-        <input id='email' value={email} onChange={this.handleEmailChange} type='email' name='email' size='28'/>
 
-        <label htmlFor='name'>Имя</label>
-        <input id='name' value={firstName} onChange={this.handleFirstNameChange} type='name' name='name' size='28'/>
-
-        <label htmlFor='name'>Фамилия</label>
-        <input id='name' value={lastName} onChange={this.handleLastNameChange} type='name' name='name' size='28'/>
+      <form onSubmit={(e) => this.handleSubmit(e)}>
+        <label htmlFor='email'>Имя пользователя:</label>
+        <input id='email' value={firstName} onChange={this.handleFirstNameChange} type='email' name='email' size='28'/>
 
         <label htmlFor='password'>Пароль*</label>
         <input id='password' value={password} onChange={this.handlePasswordChange} type='password' name='password' size='28'/>
 
-        <input type="button" value="Зарегистрироваться"/>
+        <input type="submit" value="Войти"/>
       </form>
       </>
     );
