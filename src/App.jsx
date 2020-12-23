@@ -1,7 +1,7 @@
 import React from 'react';
 import { Profile } from './components/Profile'
 import { Map } from './components/Map'
-import  Login  from './components/Login'
+import  Login  from './components/LoginForm'
 
 const PAGES = {
   map: <Map />,
