@@ -1,14 +1,14 @@
 import React from 'react';
 import { Profile } from './components/Profile'
 import { Map } from './components/Map'
-import  Login  from './components/Login'
+import { Home }  from './components/Login'
 import {withAuth} from './components/AuthContext'
 
 const PAGES = {
   map: <Map />,
   profile: <Profile />,
-  login: (props) => <Login {...props}/>,
-  exit: <Login />
+  Home: (props) => <Home {...props}/>,
+  exit: <Home />
 }
 
 
@@ -43,7 +43,7 @@ class App extends React.Component {
                 </button>
               </li>
               <li>
-                <button onClick={() => this.navigateTo("login")}>
+                <button onClick={() => this.navigateTo("Home")}>
                   Логин
                 </button>
               </li>
@@ -53,7 +53,7 @@ class App extends React.Component {
         <main data-testid="container">
           <section>
             {
-              this.state.currentPage === 'login'?
+              this.state.currentPage === 'Home'?
               PAGES[this.state.currentPage]({navigate: this.navigateTo.bind(this)}):
               PAGES[this.state.currentPage] 
             }
