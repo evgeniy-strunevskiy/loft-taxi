@@ -2,6 +2,7 @@ import React from 'react';
 import { Profile } from './components/Profile'
 import { Map } from './components/Map'
 import  Login  from './components/Login'
+import {withAuth} from './components/AuthContext'
 
 const PAGES = {
   map: <Map />,
@@ -63,4 +64,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withAuth(App);
