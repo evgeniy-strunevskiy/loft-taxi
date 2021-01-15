@@ -1,23 +1,30 @@
 import React from 'react';
-import { Profile } from './components/Profile'
-import { Map } from './components/Map'
-import  Login  from './components/LoginForm'
+import PropTypes from "prop-types"
+import { ProfileWithAuth } from './components/Profile'
+import Map from './components/Map'
+import { HomeWithAuth }  from './components/Home'
+import { withAuth } from './components/AuthContext'
+
 
 const PAGES = {
-  map: <Map />,
-  profile: <Profile />,
-  login: (props) => <Login {...props}/>,
-  exit: <Login />
+  map: (props) => <Map {...props}/>,
+  Profile: (props) => <ProfileWithAuth {...props}/>,
+  Home: (props) => <HomeWithAuth {...props}/>,
+  exit: (props) => <HomeWithAuth {...props}/>,
 }
 
 
 class App extends React.Component {
   state = {
-    currentPage: "profile"
+    currentPage: "Home"
   };
 
   navigateTo = (page) => {
-    this.setState({currentPage: page})
+    if(this.props.isLoggedIn) {
+      this.setState({currentPage: page})
+    } else {
+      this.setState({currentPage: 'Home' })
+    }
   }
 
   render() {
@@ -32,7 +39,7 @@ class App extends React.Component {
                 </button>
               </li>
               <li>
-                <button onClick={() => this.navigateTo("profile")}>
+                <button onClick={() => this.navigateTo("Profile")}>
                   Профиль
                 </button>
               </li>
@@ -42,7 +49,7 @@ class App extends React.Component {
                 </button>
               </li>
               <li>
-                <button onClick={() => this.navigateTo("login")}>
+                <button onClick={() => this.navigateTo("Home")}>
                   Логин
                 </button>
               </li>
@@ -52,9 +59,7 @@ class App extends React.Component {
         <main data-testid="container">
           <section>
             {
-              this.state.currentPage === 'login'?
-              PAGES[this.state.currentPage]({navigate: this.navigateTo.bind(this)}):
-              PAGES[this.state.currentPage] 
+              PAGES[this.state.currentPage]({navigate: this.navigateTo.bind(this)})
             }
           </section>
         </main>
@@ -63,4 +68,10 @@ class App extends React.Component {
   }
 }
 
-export default App;
+App.propTypes = {
+  logIn: PropTypes.func.isRequired,
+  logOut: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
+}
+
+export default withAuth(App);
