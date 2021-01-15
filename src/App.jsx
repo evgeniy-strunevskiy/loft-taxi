@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from "prop-types"
 import { ProfileWithAuth } from './components/Profile'
-import { Map } from './components/Map'
+import Map from './components/Map'
 import { HomeWithAuth }  from './components/Home'
-import {withAuth} from './components/AuthContext'
+import { withAuth } from './components/AuthContext'
+
 
 const PAGES = {
   map: (props) => <Map {...props}/>,
@@ -64,6 +66,12 @@ class App extends React.Component {
       </>
     )
   }
+}
+
+App.propTypes = {
+  logIn: PropTypes.func.isRequired,
+  logOut: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
 }
 
 export default withAuth(App);

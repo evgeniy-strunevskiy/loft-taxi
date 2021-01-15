@@ -1,5 +1,6 @@
 import React from "react";
 import { withAuth } from "./AuthContext";
+import PropTypes from "prop-types"
 
 export class Home extends React.Component {
   state = {
@@ -73,5 +74,13 @@ export class Home extends React.Component {
     );
   }
 }
+
+Home.propTypes = {
+  logIn: PropTypes.func.isRequired,
+  logOut: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
+  navigate: PropTypes.func.isRequired,
+}
+
 
 export const HomeWithAuth = withAuth(Home);

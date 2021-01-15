@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import mapboxgl from 'mapbox-gl'
+import PropTypes from "prop-types"
 
-export class Map extends Component {
+class Map extends Component {
   map = null;
   mapContainer = React.createRef();
 
@@ -28,3 +29,9 @@ export class Map extends Component {
     </div>
   }
 }
+
+Map.propTypes = {
+  navigate: PropTypes.func.isRequired,
+}
+
+export default Map;

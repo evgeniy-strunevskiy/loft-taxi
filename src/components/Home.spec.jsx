@@ -1,5 +1,5 @@
 import React from 'react';
-import  {Home}  from './Login';
+import  {Home}  from './Home';
 import { render } from '@testing-library/react'
 
 
