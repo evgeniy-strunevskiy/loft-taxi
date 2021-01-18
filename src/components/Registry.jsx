@@ -1,6 +1,7 @@
 import React from 'react';
+import { withAuth } from "./AuthContext";
 
-class Registry extends React.Component {
+ class Registry extends React.Component {
   state = {
     email: "",
     firstName: "",
@@ -35,7 +36,7 @@ class Registry extends React.Component {
       <h1>Регистрация</h1>
       <div>
         <div>Уже зарегистрирован?</div>
-        <button type="button" >Войти</button>
+        <button type="button" onClick={() => this.props.navigate('Home')}>Войти</button>
       </div>
       <form>
         <label htmlFor='email'>Адрес электронной почты</label>
@@ -57,4 +58,4 @@ class Registry extends React.Component {
   }
 }
 
-export default Registry;
+export const RegistryWithAuth = withAuth(Registry);

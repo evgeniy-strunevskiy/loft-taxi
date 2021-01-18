@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from "prop-types"
+import { withAuth } from './components/AuthContext'
+import { RegistryWithAuth } from './components/Registry'
+import { HomeWithAuth }  from './components/Home'
 import { ProfileWithAuth } from './components/Profile'
 import Map from './components/Map'
-import { HomeWithAuth }  from './components/Home'
-import { withAuth } from './components/AuthContext'
-
 
 const PAGES = {
   map: (props) => <Map {...props}/>,
   Profile: (props) => <ProfileWithAuth {...props}/>,
   Home: (props) => <HomeWithAuth {...props}/>,
   exit: (props) => <HomeWithAuth {...props}/>,
+  Registry: (props) => <RegistryWithAuth {...props}/>,
 }
-
 
 class App extends React.Component {
   state = {
@@ -25,8 +25,10 @@ class App extends React.Component {
   };
 
   navigateTo = (page) => {
-    if(this.props.isLoggedIn) {
+    if (this.props.isLoggedIn) {
       this.setState({currentPage: page})
+    } else if (page === 'Registry') {
+      this.setState({currentPage: 'Registry'})
     } else {
       this.setState({currentPage: 'Home' })
     }

@@ -2,7 +2,7 @@ import React from "react";
 import { withAuth } from "./AuthContext";
 import PropTypes from "prop-types"
 
-export class Home extends React.Component {
+class Home extends React.Component {
   state = {
     firstName: "",
     password: "",
@@ -40,7 +40,7 @@ export class Home extends React.Component {
 
             <div>
               <div>Новый пользователь?</div>
-              <button type="button">Зарегистрируйтесь</button>
+              <button type="button" onClick={() => this.props.navigate("Registry")} >Зарегистрируйтесь</button>
             </div>
 
             <form onSubmit={(e) => this.handleSubmit(e)}>
@@ -81,6 +81,5 @@ Home.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
   navigate: PropTypes.func.isRequired,
 }
-
 
 export const HomeWithAuth = withAuth(Home);
