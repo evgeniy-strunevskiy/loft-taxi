@@ -19,6 +19,11 @@ class App extends React.Component {
     currentPage: "Home"
   };
 
+  unauthenticate = () => {
+    this.props.logOut();
+    this.navigateTo("Home");
+  };
+
   navigateTo = (page) => {
     if(this.props.isLoggedIn) {
       this.setState({currentPage: page})
@@ -44,7 +49,7 @@ class App extends React.Component {
                 </button>
               </li>
               <li>
-                <button onClick={() => this.navigateTo("exit")}>
+                <button onClick={this.unauthenticate}>
                   Выйти
                 </button>
               </li>
@@ -59,7 +64,7 @@ class App extends React.Component {
         <main data-testid="container">
           <section>
             {
-              PAGES[this.state.currentPage]({navigate: this.navigateTo.bind(this)})
+              PAGES[this.state.currentPage]({navigate: this.navigateTo, unauthenticate: this.unauthenticate})
             }
           </section>
         </main>

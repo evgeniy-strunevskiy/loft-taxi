@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Login extends React.Component {
+class Registry extends React.Component {
   state = {
     email: "",
     firstName: "",
@@ -57,4 +57,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default Registry;
