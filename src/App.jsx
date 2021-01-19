@@ -4,10 +4,10 @@ import { withAuth } from './components/AuthContext'
 import { RegistryWithAuth } from './components/Registry'
 import { HomeWithAuth }  from './components/Home'
 import { ProfileWithAuth } from './components/Profile'
-import Map from './components/Map'
+import { Map } from './components/Map'
 
 const PAGES = {
-  map: (props) => <Map {...props}/>,
+  Map: (props) => <Map {...props}/>,
   Profile: (props) => <ProfileWithAuth {...props}/>,
   Home: (props) => <HomeWithAuth {...props}/>,
   exit: (props) => <HomeWithAuth {...props}/>,
@@ -41,7 +41,7 @@ class App extends React.Component {
           <nav>
             <ul>
               <li>
-                <button onClick={() => this.navigateTo("map")}>
+                <button onClick={() => this.navigateTo("Map")}>
                   Карта
                 </button>
               </li>
