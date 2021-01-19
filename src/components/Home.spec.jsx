@@ -9,4 +9,10 @@ describe("Home", () => {
     expect(getByLabelText('Имя пользователя:')).toHaveAttribute('name', 'email')
     expect(getByLabelText('Пароль*')).toHaveAttribute('name', 'password')
   });
+  describe("when logged in", () => {
+    it("renders profile link", () => {
+      const { getByText } = render(<HomeWithAuth isLoggedIn />);
+      expect(getByText("go to profile")).toBeInTheDocument()
+    });
+  });
 });
