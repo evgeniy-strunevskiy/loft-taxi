@@ -5,7 +5,7 @@ import { render } from '@testing-library/react'
 
 describe("Registry", () => {
   it("renders correctly", () => {
-    const { getByLabelText } = render(<RegistryWithAuth />);
+    const { getByLabelText } = render(<RegistryWithAuth navigate={() => undefined}/>);
     expect(getByLabelText('Адрес электронной почты')).toHaveAttribute('name', 'email')
     expect(getByLabelText('Имя')).toHaveAttribute('name', 'firstName')
     expect(getByLabelText('Фамилия')).toHaveAttribute('name', 'lastName')
