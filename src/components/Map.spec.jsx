@@ -3,13 +3,11 @@ import { Map } from "./Map";
 import { render } from "@testing-library/react";
 import mapbox from "mapbox-gl";
 
-jest.mock("mapbox-gl", () => ({
-  Map: jest.fn(() => ({ remove: () => {} })),
-}));
+jest.mock("mapbox-gl");
 
 describe("Map", () => {
   it("render correctly", () => {
-    const {getByTestId} = render(<Map />);
+    const {getByTestId} = render(<Map navigate={() => undefined}/>);
     expect(mapbox.Map).toHaveBeenCalledWith({
       center: [30.3056504, 59.9429126],
       container: getByTestId('map'),
@@ -17,4 +15,4 @@ describe("Map", () => {
       zoom: 10,
     });
   })
-});
+});     

@@ -14,7 +14,7 @@ export class Map extends Component {
       container: this.mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v9',
       center: [30.3056504, 59.9429126],
-      zoom: 5,
+      zoom: 10,
     })
 
   }
