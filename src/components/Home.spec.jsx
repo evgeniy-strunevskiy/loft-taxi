@@ -1,12 +1,12 @@
 import React from 'react';
-import  { HomeWithAuth }  from './Home';
+import  { Home }  from './Home';
 import { render } from '@testing-library/react'
 
 
 describe("Home", () => {
   it("renders correctly", () => {
     const { getByLabelText } = render(
-    <HomeWithAuth
+    <Home
     isLoggedIn={false} 
     navigate={() => undefined} 
     logOut={() => undefined}
@@ -19,7 +19,7 @@ describe("Home", () => {
   describe("when logged in", () => {
     it("renders profile link", () => {
       const { getByText } = render(
-      <HomeWithAuth 
+      <Home 
       isLoggedIn={true}  
       navigate={() => undefined} 
       logOut={() => undefined}

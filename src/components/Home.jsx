@@ -2,7 +2,7 @@ import React from "react";
 import { withAuth } from "./AuthContext";
 import PropTypes from "prop-types"
 
-class Home extends React.Component {
+export class Home extends React.Component {
   state = {
     firstName: "",
     password: "",
